@@ -1,0 +1,27 @@
+<script type="module">
+  import { h, mount } from './yavdom.min.js'
+
+  let count = 0
+  let items = []
+
+  mount('body', () => [
+    h('button', { onclick () {
+      count++
+      items.push(count)
+    } }, '+'),
+    ' ',
+    h('button', { onclick () {
+      count--
+      items.pop()
+    } }, '-'),
+    ' Count: ', count,
+    h(
+      'ul',
+      items.map((item, i) =>
+        h('li', { onclick () {
+          items.splice(i, 1)
+        }}, 'Item ' + item)
+      )
+    )
+  ])
+</script>
